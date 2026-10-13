@@ -72,6 +72,15 @@ func main() {
 
     c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
   })
+
+  router.GET("/hello", func(c *gin.Context) {
+    c.String(http.StatusOK, "Hello, World!")
+  })
+
+  router.POST("/users", func(c *gin.Context) {
+    name := c.PostForm("name")
+    c.JSON(http.StatusCreated, gin.H{"user": name})
+  })
   
   router.Run() // listens on 0.0.0.0:8080 by default
 }
